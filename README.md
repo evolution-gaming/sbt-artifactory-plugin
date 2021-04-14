@@ -5,12 +5,16 @@
 [![version](https://img.shields.io/badge/version-click-blue)](https://evolution.jfrog.io/artifactory/api/search/latestVersion?g=com.evolution&a=sbt-artifactory-plugin_2.13&repos=maven-local-releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellowgreen.svg)](https://opensource.org/licenses/MIT)
 
+This plugin adds useful methods to `Resolver`, so you could do something like:
+
+```scala
+resolvers += Resolver.artifactory("owner", "repo")
+```
+
+You also will get [evolution.jfrog.io](http://evolution.jfrog.io) by default included into your project resolvers
+
 ## Setup
 
 ```scala
-resolvers += sbt.librarymanagement.MavenRepository(
-  "artifactory-evolution-public",
-  "https://evolution.jfrog.io/artifactory/public")
-
-libraryDependencies += "com.evolution" %% "sbt-artifactory-plugin" % "0.0.1"
+addSbtPlugin("com.evolution" % "sbt-artifactory-plugin" % "0.0.1")
 ```

@@ -4,13 +4,13 @@ sbtPlugin := true
 
 name := "sbt-artifactory-plugin"
 
-organization := "com.evolutiongaming"
+organization := "com.evolution"
 
 description := "SBT artifactory plugin"
 
 homepage := Some(new URL("https://github.com/evolution-gaming/sbt-artifactory-plugin"))
 
-startYear := Some(2019)
+startYear := Some(2021)
 
 organizationName := "Evolution"
 
@@ -18,11 +18,11 @@ organizationHomepage := Some(url("https://evolution.com"))
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.12.11")
+crossScalaVersions := Seq("2.12.13")
 
-crossSbtVersions := Seq("1.3.13")
+crossSbtVersions := Seq("1.5.0", "1.4.9", "1.3.13")
 
-resolvers += Resolver.bintrayRepo("evolutiongaming", "maven")
+publishMavenStyle := true
 
 licenses := Seq(("MIT", url("https://opensource.org/licenses/MIT")))
 
