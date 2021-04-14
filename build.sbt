@@ -20,7 +20,7 @@ scalaVersion := crossScalaVersions.value.head
 
 crossScalaVersions := Seq("2.12.13")
 
-crossSbtVersions := Seq("1.5.0", "1.4.9", "1.3.13")
+crossSbtVersions := Seq("1.5.0", "1.4.9")
 
 publishMavenStyle := true
 
@@ -34,4 +34,5 @@ scriptedLaunchOpts := Seq("-Xmx1G", s"-Dplugin.version=${version.value}")
 
 enablePlugins(SbtPlugin)
 
-addCommandAlias("build", ";clean; coverage; test; scripted")
+//addCommandAlias("build", ";clean; coverage; test; scripted")
+addCommandAlias("build", ";clean; test; scripted")
