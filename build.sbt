@@ -26,7 +26,27 @@ publishMavenStyle := true
 
 licenses := Seq(("MIT", url("https://opensource.org/licenses/MIT")))
 
-releaseCrossBuild := true
+scmInfo := Some(ScmInfo(
+  url("https://github.com/evolution-gaming/sbt-artifactory-plugin"),
+  "git@github.com:evolution-gaming/sbt-artifactory-plugin.git"))
+
+developers := List(
+  Developer(
+    "t3hnar",
+    "Yaroslav Klymko",
+    "t3hnar@gmail.comm",
+    url("https://gitlab.com/t3hnar")))
+
+
+ThisBuild / versionScheme := Some("early-semver")
+
+sonatypeCredentialHost := "s01.oss.sonatype.org"
+
+sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
+
+releasePublishArtifactsAction := PgpKeys.publishSigned.value
+
+publishTo := sonatypePublishToBundle.value
 
 scriptedBufferLog := false
 
