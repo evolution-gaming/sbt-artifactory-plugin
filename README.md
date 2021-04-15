@@ -16,5 +16,5 @@ You also will get [evolution.jfrog.io](http://evolution.jfrog.io) by default inc
 ## Setup
 
 ```scala
-addSbtPlugin("com.evolution" % "sbt-artifactory-plugin" % "0.0.1")
+addSbtPlugin("com.evolution" % "sbt-artifactory-plugin" % "0.0.2")
 ```
