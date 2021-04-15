@@ -6,7 +6,7 @@ name := "sbt-artifactory-plugin"
 
 organization := "com.evolution"
 
-description := "SBT artifactory plugin"
+description := "SBT Artifactory plugin"
 
 homepage := Some(new URL("https://github.com/evolution-gaming/sbt-artifactory-plugin"))
 
@@ -18,9 +18,9 @@ organizationHomepage := Some(url("https://evolution.com"))
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.12.13")
+crossScalaVersions := Seq("2.12.12")
 
-crossSbtVersions := Seq("1.5.0", "1.4.9")
+crossSbtVersions := Seq("1.5.0")
 
 publishMavenStyle := true
 
@@ -38,7 +38,7 @@ developers := List(
     url("https://gitlab.com/t3hnar")))
 
 
-ThisBuild / versionScheme := Some("early-semver")
+versionScheme := Some("early-semver")
 
 sonatypeCredentialHost := "s01.oss.sonatype.org"
 
@@ -72,5 +72,4 @@ scriptedLaunchOpts := Seq("-Xmx1G", s"-Dplugin.version=${version.value}")
 
 enablePlugins(SbtPlugin)
 
-//addCommandAlias("build", ";clean; coverage; test; scripted")
-addCommandAlias("build", ";clean; test; scripted")
+addCommandAlias("build", ";clean; coverage; test; scripted")
