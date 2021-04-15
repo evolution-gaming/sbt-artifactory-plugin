@@ -48,6 +48,24 @@ releasePublishArtifactsAction := PgpKeys.publishSigned.value
 
 publishTo := sonatypePublishToBundle.value
 
+import ReleaseTransformations._
+
+releaseCrossBuild := true // true if you cross-build the project for multiple Scala versions
+releaseProcess := Seq[ReleaseStep](
+  checkSnapshotDependencies,
+  inquireVersions,
+  runClean,
+  runTest,
+  setReleaseVersion,
+  commitReleaseVersion,
+  tagRelease,
+  releaseStepCommandAndRemaining("publishSigned"),
+  releaseStepCommand("sonatypeBundleRelease"),
+  setNextVersion,
+  commitNextVersion,
+  pushChanges
+)
+
 scriptedBufferLog := false
 
 scriptedLaunchOpts := Seq("-Xmx1G", s"-Dplugin.version=${version.value}")
