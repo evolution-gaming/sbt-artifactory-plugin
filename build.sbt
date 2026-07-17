@@ -18,9 +18,23 @@ organizationHomepage := Some(url("https://evolution.com"))
 
 scalaVersion := crossScalaVersions.value.head
 
-crossScalaVersions := Seq("2.12.12")
+crossScalaVersions := Seq("2.12.20", "3.8.4")
 
-crossSbtVersions := Seq("1.5.0")
+addSbtPlugin("com.github.sbt" % "sbt2-compat" % "0.1.0")
+
+(pluginCrossBuild / sbtVersion) := {
+  scalaBinaryVersion.value match {
+    case "2.12" => "1.11.6"
+    case _      => "2.0.2"
+  }
+}
+
+scriptedSbt := {
+  scalaBinaryVersion.value match {
+    case "2.12" => "1.11.6"
+    case _      => "2.0.2"
+  }
+}
 
 publishMavenStyle := true
 
