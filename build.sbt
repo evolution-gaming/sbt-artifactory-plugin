@@ -20,8 +20,6 @@ scalaVersion := crossScalaVersions.value.head
 
 crossScalaVersions := Seq("2.12.20", "3.8.4")
 
-addSbtPlugin("com.github.sbt" % "sbt2-compat" % "0.1.0")
-
 (pluginCrossBuild / sbtVersion) := {
   scalaBinaryVersion.value match {
     case "2.12" => "1.11.6"
@@ -53,32 +51,6 @@ developers := List(
 
 
 versionScheme := Some("early-semver")
-
-sonatypeCredentialHost := "s01.oss.sonatype.org"
-
-sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
-
-releasePublishArtifactsAction := PgpKeys.publishSigned.value
-
-publishTo := sonatypePublishToBundle.value
-
-import ReleaseTransformations._
-
-releaseCrossBuild := true // true if you cross-build the project for multiple Scala versions
-releaseProcess := Seq[ReleaseStep](
-  checkSnapshotDependencies,
-  inquireVersions,
-  runClean,
-  runTest,
-  setReleaseVersion,
-  commitReleaseVersion,
-  tagRelease,
-  releaseStepCommandAndRemaining("publishSigned"),
-  releaseStepCommand("sonatypeBundleRelease"),
-  setNextVersion,
-  commitNextVersion,
-  pushChanges
-)
 
 scriptedBufferLog := false
 
