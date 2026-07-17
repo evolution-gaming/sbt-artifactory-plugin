@@ -8,25 +8,35 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
-        scala:
-          - 2.12.12
+        include:
+          - scala: 2.12.12
+            java: 11
+          - scala: 3.8.4
+            java: 17
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
 
-      - uses: coursier/cache-action@v5
+      - uses: coursier/cache-action@v8
+        continue-on-error: true
 
-      - name: scala
-        uses: olafurpg/setup-scala@v10
+      - name: setup java
+        uses: actions/setup-java@v5
         with:
-          java-version: openjdk@1.11
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+
+      - uses: sbt/setup-sbt@v1
 
       - name: build ${{ matrix.scala }}
         run: sbt ++${{ matrix.scala }} build
 
       - name: test coverage
-        if: success()
+        # sbt-coveralls has no sbt2-compatible release yet, so only upload
+        # coverage from the sbt 1.x / Scala 2.12 leg.
+        if: success() && matrix.scala == '2.12.12'
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         run: sbt ++${{ matrix.scala }} coverageReport coverageAggregate coveralls
